@@ -27,7 +27,7 @@ confirmhash = m.hexdigest()
 
 with conn.cursor() as cur:
 	sql = 'select * from users where email=?'
-	cur.execute(sql, (mail))
+	cur.execute(sql, mail)
 	data = cur.fetchall()
 	if data != 0:
 		print 'Exists'
