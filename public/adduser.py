@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 import sys
 import os
@@ -14,7 +15,7 @@ if os.environ['REQUEST_METHOD'] != 'POST':
 form = cgi.FieldStorage()
 mail = form.getvalue('email')
 
-emailtext = """Dobrý den,
+emailtext = u"""Dobrý den,
 
 někdo, pravděpodobně Vy, požádal o zařazení e-mailové adresy %s do mailové služby na pravidelné zasílání článků z Wikipedie do e-mailu. Prosíme o potvrzení kliknutím na následující odkaz.
 
