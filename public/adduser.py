@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#-*- coding: utf-8 -*-
 
 import yaml
 config = yaml.load(open('config.yaml'))
@@ -28,7 +29,7 @@ with conn.cursor() as cur:
 	sql = 'insert into users(email, confirmcode) values (? ,?)'
 	cur.execute(sql, (mail, confirmhash))
 
-emailtext = """Dobrý den,
+emailtext = u"""Dobrý den,
 
 někdo, pravděpodobně Vy, požádal o zařazení e-mailové adresy %s do mailové služby na pravidelné zasílání článků z Wikipedie do e-mailu. Prosíme o potvrzení kliknutím na následující odkaz.
 
@@ -45,4 +46,6 @@ s = smtplib.SMTP('mail.tools.wmflabs.org')
 msg = MIMEText(emailtext.encode('utf-8'))
 msg['Subject'] = 'Potvrzení e-mailové adresy'
 msg['From'] = we
-msg['To'] = email
+msg['To'] = mail
+s.sendmail(we, mail, msg.as_string())
+s.quit()
