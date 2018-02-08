@@ -32,4 +32,4 @@ s = smtplib.SMTP('mail.tools.wmflabs.org')
 msg = MIMEText(emailtext.encode('utf-8'))
 msg['Subject'] = 'Potvrzení e-mailové adresy'
 msg['From'] = we
-msg['To'] = email
+msg['To'] = mail
