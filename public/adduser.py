@@ -26,6 +26,14 @@ m.update(base)
 confirmhash = m.hexdigest()
 
 with conn.cursor() as cur:
+	sql = 'select * from users where email=?'
+	cur.execute(sql, (mail))
+	data = cur.fetchall()
+	if data != 0:
+		print 'Exists'
+		sys.exit()
+
+with conn.cursor() as cur:
 	sql = 'insert into users(email, confirmcode) values (? ,?)'
 	cur.execute(sql, (mail, confirmhash))
 
