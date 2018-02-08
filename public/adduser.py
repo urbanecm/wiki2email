@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 
+import yaml
+config = yaml.load(open('config.yaml'))
+from wmflabs import db
+conn = db.connect(config['DB_NAME'])
 import sys
 import os
 import cgi
 import cgitb
 from email.mime.text import MIMEText
 import smtplib
+import random
+import hashlib
 
 if os.environ['REQUEST_METHOD'] != 'POST':
 	print 'Use POST please'
@@ -13,6 +19,14 @@ if os.environ['REQUEST_METHOD'] != 'POST':
 
 form = cgi.FieldStorage()
 mail = form.getvalue('email')
+base = mail + str(random.randint(0, 1000))
+m = hashlib.md5()
+m.update(base)
+confirmhash = m.hexdigest()
+
+with conn.cursor() as cur:
+	sql = 'insert into users(email, confirmcode) values (? ,?)'
+	cur.execute(sql, (mail, confirmhash))
 
 emailtext = """Dobrý den,
 
@@ -24,7 +38,7 @@ Potvrzení: %s
 Váš zasílač wiki článků do e-mailu
 
 Kontakt: martin.urbanec@wikimedia.cz
-""" % (mail, "https://tools.wmflabs.org/wiki2email/confirmmail.py?email=" + mail)
+""" % (mail, "https://tools.wmflabs.org/wiki2email/confirmmail.py?email=" + mail + '&confirm=' + confirmhash)
 
 we = 'urbanecm@tools.wmflabs.org'
 s = smtplib.SMTP('mail.tools.wmflabs.org')
