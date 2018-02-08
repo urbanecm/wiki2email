@@ -33,5 +33,5 @@ msg = MIMEText(emailtext.encode('utf-8'))
 msg['Subject'] = 'Potvrzení e-mailové adresy'
 msg['From'] = we
 msg['To'] = mail
-s.sendmail(we, email, msg.as_string())
+s.sendmail(we, mail, msg.as_string())
 s.quit()
