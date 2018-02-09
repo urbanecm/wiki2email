@@ -2,6 +2,10 @@
 #-*- coding: utf-8 -*-
 
 # Import libs
+import yaml
+config = yaml.load(open('public/config.yaml'))
+from wmflabs import db
+conn = db.connect(config['DB_NAME'])
 import datetime
 import pywikibot
 import smtplib
@@ -46,15 +50,23 @@ emailtext = """Článek týdne: %s
 
 Plný text: %s
 
--- 
+--
 Váš zasílač článků týdne
 
 Kontakt: martin.urbanec@wikimedia.cz
 """ % (article, text, "https://cs.wikipedia.org/wiki/" + article.replace(' ', '_'))
 
-# Send mails!!!
 
-emails = ['martin@urbanec.cz'] # Fetch it from a database
+# Fetch emails
+emails = []
+with conn.cursor() as cur:
+	sql = 'select email from users where confirmed=1'
+	cur.execute(sql)
+	data = cur.fetchall()
+for line in data:
+	emails.append(line)
+
+# Send mails!!!
 we = 'urbanecm@tools.wmflabs.org'
 s = smtplib.SMTP('mail.tools.wmflabs.org')
 for email in emails:
