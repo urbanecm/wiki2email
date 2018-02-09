@@ -64,7 +64,7 @@ with conn.cursor() as cur:
 	cur.execute(sql)
 	data = cur.fetchall()
 for line in data:
-	emails.append(line)
+	emails.append(line[0])
 
 # Send mails!!!
 we = 'urbanecm@tools.wmflabs.org'
