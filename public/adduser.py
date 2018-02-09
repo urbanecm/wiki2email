@@ -57,6 +57,6 @@ msg['From'] = we
 msg['To'] = mail
 s.sendmail(we, mail, msg.as_string())
 s.quit()
-print 'Location: /wiki2email'
+print 'Location: /wiki2email/?added=true'
 print ''
 print 'Moved'

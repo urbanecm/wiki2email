@@ -35,5 +35,5 @@ with conn.cursor() as cur:
 	sql = 'update users set confirmed=1 where email=?'
 	cur.execute(sql, (email, ))
 
-print 'Location: /wiki2email'
+print 'Location: /wiki2email/?confirmed=true'
 print
