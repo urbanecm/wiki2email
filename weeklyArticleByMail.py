@@ -3,7 +3,7 @@
 
 # Import libs
 import yaml
-config = yaml.load(open('public/config.yaml'))
+config = yaml.load(open('/data/project/wiki2email/public/config.yaml'))
 from wmflabs import db
 conn = db.connect(config['DB_NAME'])
 import datetime
