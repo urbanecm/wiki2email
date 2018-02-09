@@ -47,7 +47,7 @@ Potvrzení: %s
 Váš zasílač wiki článků do e-mailu
 
 Kontakt: martin.urbanec@wikimedia.cz
-""" % (mail, "https://tools.wmflabs.org/wiki2email/confirmmail.py?email=" + mail + '&confirm=' + confirmhash)
+""" % (mail, "https://tools.wmflabs.org/wiki2email/confirmmail.py?confirmcode=" + confirmhash)
 
 we = 'urbanecm@tools.wmflabs.org'
 s = smtplib.SMTP('mail.tools.wmflabs.org')
