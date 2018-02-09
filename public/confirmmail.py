@@ -23,7 +23,7 @@ else:
 
 with conn.cursor() as cur:
 	sql = 'select email from users where confirmcode=?'
-	cur.execute(sql)
+	cur.execute(sql, (confirmcode,))
 	data = cur.fetchall()
 	if len(data) != 1:
 		print 'Bad request'
