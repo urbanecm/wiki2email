@@ -3,6 +3,8 @@
 
 import yaml
 config = yaml.load(open('config.yaml'))
+from wmflabs import db
+conn = db.connect(config['DB_NAME'])
 import sys
 import os
 import cgi
@@ -19,7 +21,6 @@ else:
 	print 'Bad request'
 	sys.exit()
 
-conn = db.connect('cswiki')
 with conn.cursor() as cur:
 	sql = 'select email from users where confirmcode=?'
 	cur.execute(sql)
