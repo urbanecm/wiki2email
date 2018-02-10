@@ -20,7 +20,7 @@ if os.environ['REQUEST_METHOD'] != 'POST':
 
 form = cgi.FieldStorage()
 mail = form.getvalue('email')
-base = mail + str(random.randint(0, 1000))
+base = mail + str(random.randint(0, 10000000))
 m = hashlib.md5()
 m.update(base)
 confirmhash = m.hexdigest()
