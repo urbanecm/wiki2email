@@ -6,6 +6,28 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
 	<body>
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Varování</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	<p>By using this project, you agree that any private information you give to this project may be made publicly available and not be treated as confidential.</p>
+
+	<p>By using this project, you agree that the volunteer administrators of this project will have access to any data you submit. This can include your IP address, your username/password combination for accounts created in Labs services, and any other information that you send. The volunteer administrators of this project are bound by the Wikimedia Labs Terms of Use, and are not allowed to share this information or use it in any non-approved way.</p>
+
+	<p>Since access to this information is fundamental to the operation of Wikimedia Labs, these terms regarding use of your data expressly override the Wikimedia Foundation's Privacy Policy as it relates to the use and access of your personal information.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Rozumím</button>
+      </div>
+    </div>
+  </div>
+</div>
 		<div class="container">
 			<h1>Týdenní články z Wikipedie</h1>
 			<form action="adduser.py" method="post">
@@ -13,19 +35,20 @@
 				<input class="form-control" type="text" name="email" id="email">
 				<input class="btn btn-primary" type="submit" value="Odeslat">
 			</form>
-			<script>
-				if(window.location.href.indexOf('added=true') != -1)
-				{
-					alert('Zkontrolujte, prosím, svou e-mailovou schránku');
-				}
-				if(window.location.href.indexOf('confired=true') != -1)
-				{
-					alert('Vaše adresa byla potvrzena');
-				}
-			</script>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script>
+			$('#myModal').modal('show');
+			if(window.location.href.indexOf('added=true') != -1)
+			{
+				alert('Zkontrolujte, prosím, svou e-mailovou schránku');
+			}
+			if(window.location.href.indexOf('confired=true') != -1)
+			{
+				alert('Vaše adresa byla potvrzena');
+			}
+		</script>
 	</body>
-</html>
+</html
